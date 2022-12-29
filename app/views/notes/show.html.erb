@@ -27,7 +27,7 @@
   <% num = 0 %>
   <% @note.texts.each do |text| %>
     <% num += 1 %>
-    <h3><%= "#{num}. #{text.procedure}" %></h3>
+    <h4><%= "#{num}. #{text.procedure}" %></h4>
     <% if text.text_image.attached? %>
       <p class="text-center"><%= image_tag text.get_text_image(700,500) %></p>
     <% end %>
