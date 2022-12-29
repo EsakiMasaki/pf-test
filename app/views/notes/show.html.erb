@@ -1,2 +1,17 @@
-<h1>Notes#show</h1>
-<p>Find me in app/views/notes/show.html.erb</p>
+<p>
+  <span>投稿日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
+  <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
+</p>
+<h1><%= @note.title %></h1>
+<p><%= @note.can %></p>
+<ol>
+  <% @note.texts.each do |text| %>
+    <li><%= text.procedure %></li>
+  <% end %>
+</ol>
+<% num = 0 %>
+<% @note.texts.each do |text| %>
+  <% num += 1 %>
+  <h3><%= "#{num}. #{text.procedure}" %></h3>
+  <p class="mb-3"><%= text.text %></p>
+<% end %>

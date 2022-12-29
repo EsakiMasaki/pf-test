@@ -5,13 +5,19 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
+    if @note.save
+      redirect_to note_path(@note)
+    else
+      render :new
+    end
   end
 
   def index
   end
 
   def show
+    @note = Note.find(params[:id])
   end
 
   def edit
@@ -26,6 +32,6 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:note_image,texts_attributes: [:procedure,:_destroy])
+    params.require(:note).permit(:note_image,:title,:can,texts_attributes: [:procedure,:text,:_destroy])
   end
 end

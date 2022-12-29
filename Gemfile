@@ -60,3 +60,5 @@ gem "devise"
 gem "cocoon"
 
 gem "jquery-rails"
+
+gem "pry-rails"

@@ -1,7 +1,9 @@
 <h1>ノート作成</h1>
 
 <%= form_with model: @note , url: notes_path , method: :post, id: "form_area" do |f| %>
-  <%= link_to_add_association "+フォームを追加",f , :texts ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'} %>
+  <div class="text-right">
+    <%= link_to_add_association "手順追加",f , :texts ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'}, class: "btn btn-lg btn-primary" %>
+  </div>
   <div class="texts">
     <%= f.fields_for :texts do |t| %>
       <%= render "text_fields", f: t %>
@@ -9,6 +11,6 @@
   </div>
   <div id="detail-association-insertion-point"></div>
   <%= f.file_field :nate_image, accept: "image/*" %>
-  <%= f.submit "保存", name: "save" , class: "btn btn-info" %>
+  <%= f.submit "保存", class: "btn btn-info" %>
 <% end %>
 
