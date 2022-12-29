@@ -2,6 +2,9 @@ class Text < ApplicationRecord
   belongs_to :note
   has_one_attached :text_image
 
+  validates :procedure ,presence: true
+  validates :text ,presence: true
+
   def get_text_image(width,height)
     unless text_image.attached?
       file_path = Rails.root.join("app/assets/images/default-image.jpg")
