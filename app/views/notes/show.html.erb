@@ -1,12 +1,14 @@
 <p>
-  <span>投稿日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
+  <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
   <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
 </p>
 <h1><%= @note.title %></h1>
 <h3>出来るようになること</h3>
 <p><%= @note.can %></p>
-<h3>必要なもの</h3>
-<p><%= @note.necessities %></p>
+<% if @note.necessities != "" %>
+  <h3>必要なもの</h3>
+  <p><%= @note.necessities %></p>
+<% end %>
 <h3>手順</h3>
 <ol>
   <% @note.texts.each do |text| %>
