@@ -13,5 +13,10 @@
 <% @note.texts.each do |text| %>
   <% num += 1 %>
   <h3><%= "#{num}. #{text.procedure}" %></h3>
+  <% if text.text_image.attached? %>
+    <p class="text-center"><%= image_tag text.get_text_image(700,500) %></p>
+  <% end %>
   <p class="mb-3"><%= text.text %></p>
 <% end %>
+
+<p><%= @note.conclude %></p>

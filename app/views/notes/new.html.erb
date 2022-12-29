@@ -1,16 +1,49 @@
 <h1>ノート作成</h1>
 
 <%= form_with model: @note , url: notes_path , method: :post, id: "form_area" do |f| %>
-  <div class="text-right">
-    <%= link_to_add_association "手順追加",f , :texts ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'}, class: "btn btn-lg btn-primary" %>
+  <div class="row">
+    <div class="col-10">
+      <%= f.label "タイトル" %><br>
+      <%= f.text_field :title %>
+    </div>
   </div>
-  <div class="texts">
-    <%= f.fields_for :texts do |t| %>
-      <%= render "text_fields", f: t %>
-    <% end %>
+  <div class="row">
+    <div class="col-10">
+      <%= f.label "できるようになること" %><br>
+      <%= f.text_area :can %>
+    </div>
   </div>
-  <div id="detail-association-insertion-point"></div>
-  <%= f.file_field :nate_image, accept: "image/*" %>
-  <%= f.submit "保存", class: "btn btn-info" %>
+  <div class="row">
+    <div class="col-10">
+      <%= f.label "必要なもの" %><br>
+      <%= f.text_area :necessities %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <div class="text-right bg-dark p-2">
+        <%= link_to_add_association "手順追加",f , :texts ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'}, class: "btn btn-primary rounded-circle" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <div class="texts">
+        <%= f.fields_for :texts do |t| %>
+          <%= render "text_fields", f: t %>
+        <% end %>
+      </div>
+      <div id="detail-association-insertion-point"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <%= f.label "まとめ" %><br>
+      <%= f.text_area :conclude %>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit "保存", class: "btn btn-lg btn-info" %>
+  </div>
 <% end %>
 
