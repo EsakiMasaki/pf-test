@@ -3,12 +3,17 @@
   <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
 </p>
 <h1><%= @note.title %></h1>
+<h3>出来るようになること</h3>
 <p><%= @note.can %></p>
+<h3>必要なもの</h3>
+<p><%= @note.necessities %></p>
+<h3>手順</h3>
 <ol>
   <% @note.texts.each do |text| %>
     <li><%= text.procedure %></li>
   <% end %>
 </ol>
+<h3>手順説明</h3>
 <% num = 0 %>
 <% @note.texts.each do |text| %>
   <% num += 1 %>
@@ -19,4 +24,5 @@
   <p class="mb-3"><%= text.text %></p>
 <% end %>
 
+<h3>まとめ</h3>
 <p><%= @note.conclude %></p>
