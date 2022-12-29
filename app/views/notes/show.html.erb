@@ -4,9 +4,11 @@
       <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
       <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
     </p>
-    <div class="mx-5">
-      <%= link_to "編集" , edit_note_path(@note), class: "btn btn-sm btn-success" %>
-    </div>
+    <% if current_user == @note.user %>
+      <div class="mx-5">
+        <%= link_to "編集" , edit_note_path(@note), class: "btn btn-sm btn-success" %>
+      </div>
+    <% end %>
   </div>
   <h1><%= @note.title %></h1>
   <h3>できること</h3>

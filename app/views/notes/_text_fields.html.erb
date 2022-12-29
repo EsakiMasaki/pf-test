@@ -7,9 +7,11 @@
       <th class="table-dark"></th>
     </tr>
     <tr>
-      <td><%= f.text_field :procedure, placeholder: "手順をここに記述してください" ,class: "form-control" %></td>
+      <td><%= f.text_field :procedure, placeholder: "手順をここに記入" ,class: "form-control" %></td>
       <td><%= f.file_field :text_image, accept: "image/*" %></td>
-      <td><%= f.text_area :text, placeholder: "手順の詳細説明をここに記述してください" ,class: "form-control" %></td>
+      <td>
+        <%= f.text_area :text,rows: 4, placeholder: "手順の詳細説明を記入" ,class: "form-control" %>
+      </td>
       <td><%= link_to_remove_association "削除" ,f ,class: "btn btn-sm btn-danger" %></td>
     </tr>
   </table>
