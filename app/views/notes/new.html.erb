@@ -1,13 +1,13 @@
 <h1>ノート作成</h1>
 
 <%= form_with model: @note , url: notes_path , method: :post, id: "form_area" do |f| %>
+  <%= link_to_add_association "+フォームを追加",f , :texts ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'} %>
   <div class="texts">
     <%= f.fields_for :texts do |t| %>
       <%= render "text_fields", f: t %>
     <% end %>
   </div>
   <div id="detail-association-insertion-point"></div>
-  <%= link_to_add_association "+フォームを追加",f , :texts ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'after'} %>
   <%= f.file_field :nate_image, accept: "image/*" %>
   <%= f.submit "保存", name: "save" , class: "btn btn-info" %>
 <% end %>
