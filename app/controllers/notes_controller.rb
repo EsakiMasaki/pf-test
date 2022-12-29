@@ -21,9 +21,16 @@ class NotesController < ApplicationController
   end
 
   def edit
+    @note = Note.find(params[:id])
   end
 
   def update
+    @note = Note.find(params[:id])
+    if @note.update(note_params)
+      redirect_to note_path(@note)
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -32,6 +39,6 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title,:can,:necessities,:conclude,texts_attributes: [:procedure,:text,:text_image,:_destroy])
+    params.require(:note).permit(:title,:can,:necessities,:conclude,texts_attributes: [:id,:procedure,:text,:text_image,:_destroy])
   end
 end
