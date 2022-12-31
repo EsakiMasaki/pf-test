@@ -2,6 +2,7 @@
   <h1>ランキング</h1>
   <table class="table">
     <tr>
+      <th>作成者</th>
       <th>タイトル</th>
       <th>カテゴリー</th>
       <th>いいね数</th>
@@ -9,6 +10,12 @@
     </tr>
     <% @notes.each do |note| %>
       <tr>
+        <td>
+          <%= link_to user_path(note.user) ,class: "text-dark" do %>
+            <%= image_tag note.user.get_profile_image(25,25) , class: "rounded-circle" %>
+            <%= note.user.name %>
+          <% end %>
+        </td>
         <td><%= note.title %></td>
         <td></td>
         <% if user_signed_in? %>
