@@ -14,6 +14,7 @@
     <header>
       <ul>
         <% if user_signed_in? %>
+          <li><%= link_to "マイページ", user_path(current_user) %></li>
           <li><%= link_to "ノート作成", new_note_path %></li>
           <li><%= link_to "ノートを見る", notes_path %></li>
           <li><%= link_to "ログアウト",destroy_user_session_path ,method: :delete %></li>
