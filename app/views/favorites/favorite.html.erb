@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>お気に入り一覧</h1>
+
+  <% if @favorites.count != 0 %>
+    <table class="table">
+      <tr>
+        <th>タイトル</th>
+        <th>カテゴリー</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @favorites.each do |favorite| %>
+        <tr>
+          <td><%= favorite.note.title %></td>
+          <td></td>
+          <td class="favorite-<%= favorite.note.id %>"><%= render "favorites/like", note: favorite.note %></td>
+          <td><%= link_to "見る", note_path(favorite.note),class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>お気に入りはありません</p>
+  <% end %>
+</div>

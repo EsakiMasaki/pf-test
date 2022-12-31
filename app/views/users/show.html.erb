@@ -2,6 +2,7 @@
 
 <% if current_user == @user %>
   <%= link_to "編集" , edit_user_path(@user), class: "btn btn-success" %>
+  <%= link_to "お気に入り" , note_favorite_path(@user) %>
 <% end %>
 
 <%= image_tag @user.get_profile_image(500,500) %>

@@ -10,4 +10,8 @@ class FavoritesController < ApplicationController
     @favorite = current_user.favorites.find_by(note_id: note.id)
     @favorite.destroy
   end
+
+  def favorite
+    @favorites = current_user.favorites
+  end
 end
