@@ -14,4 +14,9 @@ class Note < ApplicationRecord
 
   accepts_nested_attributes_for :texts, allow_destroy: true
 
+  enum publish_status: {
+    publish: 0,
+    nonpublic: 1
+  }
+
 end

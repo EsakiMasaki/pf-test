@@ -1,0 +1,6 @@
+ja:
+  enums:
+    note:
+      publish_status:
+        publish: "公開"
+        nonpublic: "非公開"

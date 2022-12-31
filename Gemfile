@@ -62,3 +62,5 @@ gem "cocoon"
 gem "jquery-rails"
 
 gem "pry-rails"
+
+gem "enum_help"
