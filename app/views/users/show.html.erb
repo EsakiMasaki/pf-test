@@ -1,24 +1,31 @@
-<h1><%= @user.name %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h1><%= image_tag @user.get_profile_image(50,50),class: "rounded-circle mb-2 mr-2" %><%= @user.name %></h1>
+    </div>
+    <div class="col-5">
+      <%= link_to "ユーザー検索" , users_path ,class: "btn btn-primary" %>
 
-<% if current_user == @user %>
-  <%= link_to "編集" , edit_user_path(@user), class: "btn btn-success" %>
-  <%= link_to "お気に入り" , note_favorite_path(@user) %>
-<% end %>
+      <% if @user != current_user %>
+        <% if current_user.followings?(@user) %>
+          <%= link_to "フォローを外す" , user_relationships_path(@user) , method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "フォローする" , user_relationships_path(@user) , method: :post, class: "btn btn-info" %>
+        <% end %>
+      <% else %>
+        <%= link_to "編集" , edit_user_path(@user), class: "btn btn-success" %>
+        <%= link_to "お気に入り" , note_favorite_path(@user), class: "btn btn-warning" %>
+      <% end %>
+    </div>
+  </div>
 
-<%= image_tag @user.get_profile_image(500,500) %>
-<%= @user.introduction %>
-<%= link_to user_followings_path(@user) do %>
-  フォロー数:<%= @user.followings.count %>
-<% end %>
-<%= link_to user_followers_path(@user) do %>
-  フォロワー数:<%= @user.followers.count %>
- <% end %>
-カテゴリー
-
-<% if @user != current_user %>
-  <% if current_user.followings?(@user) %>
-    <%= link_to "フォローを外す" , user_relationships_path(@user) , method: :delete %>
-  <% else %>
-    <%= link_to "フォローする" , user_relationships_path(@user) , method: :post %>
+  <%= @user.introduction %>
+  <%= link_to user_followings_path(@user) do %>
+    フォロー数:<%= @user.followings.count %>
   <% end %>
-<% end %>
+  <%= link_to user_followers_path(@user) do %>
+    フォロワー数:<%= @user.followers.count %>
+   <% end %>
+  カテゴリー
+
+</div>
