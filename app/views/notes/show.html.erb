@@ -10,6 +10,7 @@
     <% if current_user == @note.user %>
       <div class="mx-5">
         <%= link_to "編集" , edit_note_path(@note), class: "btn btn-sm btn-success" %>
+        <%= link_to "削除" , note_path(@note), method: :delete , "data-confirm" => "本当に削除しますか" , class: "btn btn-sm btn-danger" %>
       </div>
     <% end %>
   </div>

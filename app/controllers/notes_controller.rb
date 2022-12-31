@@ -14,7 +14,7 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = current_user.notes.all
+    @notes = current_user.notes.all.order(created_at: :desc)
   end
 
   def show
@@ -35,6 +35,12 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    @note = Note.find(params[:id])
+    if @note.destroy
+      redirect_to notes_path
+    else
+      render :show
+    end
   end
 
   private
