@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
 
 
-  resources :notes, only: [:new,:index,:show,:edit,:create,:update,:destroy]
+  resources :notes, only: [:new,:index,:show,:edit,:create,:update,:destroy] do
+    resource :favorites, only: [:create,:destroy]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
