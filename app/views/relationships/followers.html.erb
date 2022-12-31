@@ -1,23 +1,37 @@
-<h1><%= @user.name %>さんのフォロワー一覧</h1>
-<% if @users.count != 0 %>
-  <table class="table">
-    <tr>
-      <th></th>
-      <th>ユーザー名</th>
-      <th>フォロー数</th>
-      <th>フォロワー数</th>
-      <th></th>
-    </tr>
-    <% @users.each do |user| %>
+<div class="container">
+  <h1><%= @user.name %>さんのフォロワー一覧</h1>
+  <% if @users.count != 0 %>
+    <table class="table">
       <tr>
-        <td><%= image_tag user.get_profile_image(50,50) %></td>
-        <td><%= user.name %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-        <td><%= link_to "詳細", user_path(user) %></td>
+        <th></th>
+        <th>ユーザー名</th>
+        <th>フォロー数</th>
+        <th>フォロワー数</th>
+        <th></th>
       </tr>
-    <% end %>
-  </table>
-<% else %>
-  <p>フォロワーはいません</p>
-<% end %>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user_path(user) , class: "text-dark" do %>
+              <%= image_tag user.get_profile_image(50,50), class: "rounded-circle" %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_followings_path(user),class: "text-dark" do %>
+              フォロー数: <%= user.followings.count %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_followers_path(user),class: "text-dark" do %>
+              フォロワー数:<%= user.followers.count %>
+            <% end %>
+          </td>
+          <td><%= link_to "詳細", user_path(user), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>フォロワーはいません</p>
+  <% end %>
+</div>
