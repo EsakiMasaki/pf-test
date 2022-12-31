@@ -1,2 +1,23 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <h1>ランキング</h1>
+  <table class="table">
+    <tr>
+      <th>タイトル</th>
+      <th>カテゴリー</th>
+      <th>いいね数</th>
+      <th></th>
+    </tr>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note.title %></td>
+        <td></td>
+        <% if user_signed_in? %>
+          <td class="favorite-<%= note.id %>"><%= render "favorites/like", note: note %></td>
+        <% else %>
+          <td><%= note.favorites.count %></td>
+        <% end %>
+        <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

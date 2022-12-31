@@ -12,6 +12,6 @@ class FavoritesController < ApplicationController
   end
 
   def favorite
-    @favorites = current_user.favorites
+    @favorites = current_user.favorites.order(created_at: :desc)
   end
 end
