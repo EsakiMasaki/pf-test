@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :notes ,dependent: :destroy
   has_many :texts ,dependent: :destroy
+  has_many :categories ,dependent: :destroy
   has_many :favorites , dependent: :destroy
   has_many :favorited_users , through: :favorites , source: :note
 

@@ -6,7 +6,7 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.new(note_params)
-    if @note.save
+    if @note.save!
       redirect_to note_path(@note)
     else
       render :new
@@ -19,6 +19,9 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+    unless Category.exists?(id: @note.category_id)
+      @note.update(category_id: nil)
+    end
   end
 
   def edit
@@ -30,7 +33,7 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       redirect_to note_path(@note)
     else
-      render :new
+      render :edit
     end
   end
 
@@ -46,6 +49,6 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title,:can,:necessities,:conclude,:publish_status,texts_attributes: [:id,:procedure,:text,:text_image,:_destroy])
+    params.require(:note).permit(:title,:can,:necessities,:conclude,:category_id,:publish_status,texts_attributes: [:id,:procedure,:text,:text_image,:_destroy])
   end
 end

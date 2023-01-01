@@ -51,9 +51,22 @@
         <%= f.text_area :conclude, placeholder: "まとめを記入" , class: "form-control" %>
       </div>
     </div>
-    <div class="row mt-3">
+    <% if current_user.categories.count != 0 %>
+      <div class="row mt-5">
+        <div class="col-10">
+          <div class="text-center">
+            <%= f.label "カテゴリー" %><br>
+            <%= f.collection_select(:category_id, current_user.categories.all, :id ,:name, prompt: "カテゴリーを選択して下さい", class: "select-box") %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= f.hidden_field :category_id,value: nil %>
+    <% end %>
+    <div class="row mt-5">
       <div class="col-10">
         <div class="text-center">
+          <%= f.label "公開ステータス" %><br>
           <%= f.radio_button :publish_status, :publish, checked: true %>
           <%= f.label :publish_status_publish, Note.publish_statuses_i18n[:publish] %>
           <%= f.radio_button :publish_status, :nonpublic %>
@@ -61,10 +74,10 @@
         </div>
       </div>
     </div>
-    <div class="row mt-3">
+    <div class="row my-5">
       <div class="col-10">
         <div class="text-center mt-3">
-          <%= f.submit "保存", class: "btn btn-lg btn-info" %>
+          <%= f.submit "保存", class: "btn btn-info" %>
         </div>
       </div>
     </div>

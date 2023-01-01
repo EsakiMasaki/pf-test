@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/followings'
-  get 'relationships/followers'
   root to: "homes#top"
   get 'home/about' => "homes#about"
 
@@ -17,5 +15,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create,:destroy]
     get "favorite" => "favorites#favorite"
   end
+
+  resources :categories, only: [:create,:destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -4,7 +4,7 @@
       <h1><%= image_tag @user.get_profile_image(50,50),class: "rounded-circle mb-2 mr-2" %><%= @user.name %></h1>
     </div>
     <div class="col-5">
-      <%= link_to "ユーザー検索" , users_path ,class: "btn btn-primary" %>
+      <%= link_to "ユーザー一覧" , users_path ,class: "btn btn-primary" %>
 
       <% if @user != current_user %>
         <% if current_user.followings?(@user) %>
@@ -27,5 +27,18 @@
     フォロワー数:<%= @user.followers.count %>
    <% end %>
   カテゴリー
+  <div class="row">
+    <% if current_user == @user %>
+      <%= form_with model: @category , url: categories_path, method: :post do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit "追加" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @categories.each do |category| %>
+      <%= category.name %><br>
+    <% end %>
+  </div>
 
 </div>

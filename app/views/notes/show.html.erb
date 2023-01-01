@@ -21,6 +21,9 @@
       </div>
     <% end %>
   </div>
+  <% if @note.category_id != nil %>
+    <p><%= @note.category.name %></p>
+  <% end %>
   <h1><%= @note.title %></h1>
   <h3>できること</h3>
   <p><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
