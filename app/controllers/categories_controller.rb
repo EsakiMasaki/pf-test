@@ -1,14 +1,14 @@
 class CategoriesController < ApplicationController
   def create
     category = current_user.categories.new(category_params)
-    if category.save
-      redirect_to request.referer
-    else
-      render "users/show"
-    end
+    category.save
+    redirect_to request.referer
   end
 
   def destroy
+    category = current_user.categories.find(params[:id])
+    category.destroy
+    redirect_to request.referer
   end
 
   private

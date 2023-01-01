@@ -6,7 +6,7 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.new(note_params)
-    if @note.save!
+    if @note.save
       redirect_to note_path(@note)
     else
       render :new
@@ -15,6 +15,11 @@ class NotesController < ApplicationController
 
   def index
     @notes = current_user.notes.all.order(created_at: :desc)
+    @notes.each do |note|
+      unless Category.exists?(id: note.category_id)
+        note.category_id = nil
+      end
+    end
   end
 
   def show

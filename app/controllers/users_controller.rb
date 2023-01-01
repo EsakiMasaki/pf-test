@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @category = current_user.categories.new
-    @categories = current_user.categories.all.order(:name)
+    @category = @user.categories.new
+    @categories = @user.categories.all.order(:name)
   end
 
   def edit

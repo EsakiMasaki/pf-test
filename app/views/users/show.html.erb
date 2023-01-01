@@ -26,8 +26,8 @@
   <%= link_to user_followers_path(@user) do %>
     フォロワー数:<%= @user.followers.count %>
    <% end %>
-  カテゴリー
-  <div class="row">
+  <h3 class="mt-5">カテゴリー</h3>
+  <div class="row mb-5">
     <% if current_user == @user %>
       <%= form_with model: @category , url: categories_path, method: :post do |f| %>
         <%= f.text_field :name %>
@@ -35,10 +35,19 @@
       <% end %>
     <% end %>
   </div>
-  <div class="row">
-    <% @categories.each do |category| %>
-      <%= category.name %><br>
-    <% end %>
-  </div>
-
+  <% @categories.each do |category| %>
+    <div class="row">
+      <div class="col-5">
+        <p><%= category.name %></p>
+        <% category.notes.each do |note| %>
+          <p class="pl-3"><%= link_to note.title , note_path(note),class: "text-dark" %></p>
+        <% end %>
+      </div>
+      <div class="col-3">
+        <% if current_user == @user %>
+          <%= link_to "削除", category_path(category) ,method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
