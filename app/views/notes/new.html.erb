@@ -51,18 +51,14 @@
         <%= f.text_area :conclude , placeholder: "まとめを記入" , class: "form-control" %>
       </div>
     </div>
-    <% if current_user.categories.count != 0 %>
-      <div class="row mt-5">
-        <div class="col-10">
-          <div class="text-center">
-            <%= f.label "カテゴリー" %><br>
-            <%= f.collection_select(:category_id, current_user.categories.all, :id ,:name, prompt: "カテゴリーを選択して下さい", class: "form-control") %>
-          </div>
+    <div class="row mt-5">
+      <div class="col-10">
+        <div class="text-center">
+          <%= f.label "カテゴリー" %><br>
+          <%= f.collection_select(:category_id, current_user.categories.all, :id ,:name, prompt: "カテゴリーを選択して下さい", class: "form-control") %>
         </div>
       </div>
-    <% else %>
-      <%= f.hidden_field :category_id,value: 100 %>
-    <% end %>
+    </div>
     <div class="row mt-5">
       <div class="col-10">
         <div class="text-center">

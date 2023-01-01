@@ -20,7 +20,7 @@ class NotesController < ApplicationController
   def show
     @note = Note.find(params[:id])
     unless Category.exists?(id: @note.category_id)
-      @note.update(category_id: nil)
+      @note.category_id = nil
     end
   end
 
@@ -29,7 +29,7 @@ class NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(params[:id])
+    @note = current_user.notes.find(params[:id])
     if @note.update(note_params)
       redirect_to note_path(@note)
     else
