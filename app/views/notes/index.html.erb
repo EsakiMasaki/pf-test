@@ -9,7 +9,7 @@
     </tr>
     <% @notes.each do |note| %>
       <tr>
-        <td><%= note.title %></td>
+        <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
         <td>
           <% if note.category_id != nil %>
             <%= note.category.name %>
