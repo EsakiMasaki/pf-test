@@ -18,14 +18,22 @@
       <% end %>
     </div>
   </div>
-
-  <%= @user.introduction %>
-  <%= link_to user_followings_path(@user) do %>
-    フォロー数:<%= @user.followings.count %>
+  <% if @user.introduction != nil %>
+    <div class="row">
+      <div class="col-5">
+        <h3>プロフィール</h3>
+        <%= safe_join(@user.introduction.split("\n"), tag(:br)) %>
+      </div>
+    </div>
   <% end %>
-  <%= link_to user_followers_path(@user) do %>
-    フォロワー数:<%= @user.followers.count %>
-   <% end %>
+  <div class="row">
+    <%= link_to user_followings_path(@user) , class: "text-dark" do %>
+      <small class="mx-3">フォロー数:<%= @user.followings.count %></small>
+    <% end %>
+    <%= link_to user_followers_path(@user) , class: "text-dark" do %>
+      <small>フォロワー数:<%= @user.followers.count %></small>
+    <% end %>
+  </div>
   <h3 class="mt-5">カテゴリー</h3>
   <div class="row mb-5">
     <% if current_user == @user %>
@@ -39,7 +47,7 @@
     <div class="row">
       <div class="col-5">
         <p><%= category.name %></p>
-        <% category.notes.each do |note| %>
+        <% category.notes.order(:title).each do |note| %>
           <p class="pl-3"><%= link_to note.title , note_path(note),class: "text-dark" %></p>
         <% end %>
       </div>
