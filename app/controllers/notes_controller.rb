@@ -23,6 +23,8 @@ class NotesController < ApplicationController
   end
 
   def show
+    @comment = NoteComment.new
+    @comments = NoteComment.all
     @note = Note.find(params[:id])
     unless Category.exists?(id: @note.category_id)
       @note.category_id = nil

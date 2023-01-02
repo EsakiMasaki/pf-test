@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
 
   resources :notes, only: [:new,:index,:show,:edit,:create,:update,:destroy] do
+    resources :note_comments, only: [:create,:destroy]
     resource :favorites, only: [:create,:destroy]
     get "favorite" => "favorites#favorite"
   end

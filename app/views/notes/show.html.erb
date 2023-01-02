@@ -50,4 +50,16 @@
 
   <h3>まとめ</h3>
   <p><%= safe_join(@note.conclude.split("\n"),tag(:br)) %></p>
+
+
+  <div class="row">
+    <div class="text-center">
+      <%= render "note_comments/form", note: @note, comment: @comment %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="comments-index text-center">
+      <%= render "note_comments/index", note: @note %>
+    </div>
+  </div>
 </div>
