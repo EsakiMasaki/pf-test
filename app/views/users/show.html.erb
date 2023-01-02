@@ -48,7 +48,9 @@
       <div class="col-5">
         <p><%= category.name %></p>
         <% category.notes.order(:title).each do |note| %>
-          <p class="pl-3"><%= link_to note.title , note_path(note),class: "text-dark" %></p>
+          <% if (note.publish_status == "publish") || (current_user == @user) %>
+            <p class="pl-3"><%= link_to note.title , note_path(note),class: "text-dark" %></p>
+          <% end %>
         <% end %>
       </div>
       <div class="col-3">
