@@ -6,6 +6,10 @@ class Note < ApplicationRecord
   has_many :favorites , dependent: :destroy
   has_many :favorited_users , through: :favorites , source: :user
 
+  def self.looks(word)
+    Note.where("title LIKE?", "%#{word}%")
+  end
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
