@@ -3,4 +3,8 @@ class Category < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
+
+  def self.looks(word)
+    Category.where("name LIKE?", "%#{word}%")
+  end
 end

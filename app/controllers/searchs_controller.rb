@@ -6,6 +6,7 @@ class SearchsController < ApplicationController
       render "/searchs/user_search_index"
     elsif params[:note_search]
       @notes = Note.looks(@word)
+      @categories = Category.looks(@word)
       render "/searchs/note_search_index"
     end
   end
