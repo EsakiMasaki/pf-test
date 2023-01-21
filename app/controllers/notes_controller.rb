@@ -56,6 +56,8 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title,:can,:necessities,:conclude,:category_id,:publish_status,texts_attributes: [:id,:procedure,:text,:text_image,:_destroy])
+    params.require(:note).permit(:title,:can,:necessities,:conclude,:category_id,:publish_status,
+    texts_attributes: [:id,:procedure,:text,:text_image,:_destroy],
+    references_attributes: [:id,:name,:url,:_destroy])
   end
 end

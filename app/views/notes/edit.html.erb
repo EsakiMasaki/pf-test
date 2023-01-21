@@ -51,6 +51,23 @@
         <%= f.text_area :conclude, placeholder: "まとめを記入" , class: "form-control" %>
       </div>
     </div>
+    <div class="row mt-3">
+      <div class="col-10">
+        <div class="text-right bg-dark p-2">
+          <%= link_to_add_association "追加",f , :references ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'}, class: "btn btn-primary rounded-circle" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-10">
+        <div class="references">
+          <%= f.fields_for :references do |t| %>
+            <%= render "reference_fields", f: t %>
+          <% end %>
+        </div>
+        <div id="detail-association-insertion-point"></div>
+      </div>
+    </div>
     <div class="row mt-5">
       <div class="col-10">
         <div class="text-center">
